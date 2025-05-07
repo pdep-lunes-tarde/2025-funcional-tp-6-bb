@@ -18,3 +18,15 @@ data Hamburguesa = Hamburguesa {
     ingredientes :: [Ingrediente]
 } deriving (Eq, Show)
 
+--Ejemplo:
+cuartoDeLibra :: Hamburguesa
+cuartoDeLibra = Hamburguesa {
+    precioBase = 20,
+    ingredientes = [Pan, Carne, Cheddar, Pan]
+}
+
+agrandar :: Hamburguesa -> Hamburguesa
+agrandar (Hamburguesa precioBase ingredientes)
+    | any (== Carne) ingredientes = Hamburguesa (precioBase + precioIngrediente Carne) (Carne : ingredientes)
+    | any (== Pollo) ingredientes = Hamburguesa (precioBase + precioIngrediente Pollo) (Pollo : ingredientes)
+    | otherwise = Hamburguesa precioBase ingredientes
